@@ -18,9 +18,9 @@ def forward_email():
     try:
         data = request.get_json()
 
-        subject = data.get('subject')
+        subject = data.get('name')
         message = data.get('message')
-        sender_email = data.get('sender_email')
+        sender_email = data.get('email')
 
         if not all([subject, message, sender_email]):
             return jsonify({'error': 'Missing required fields'}), 400
