@@ -3,3 +3,4 @@ Flask-mail
 requests
 gunicorn
 flask-cors
+email-validator
