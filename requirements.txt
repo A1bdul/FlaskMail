@@ -2,3 +2,4 @@ Flask
 Flask-mail
 requests
 gunicorn
+flask-cors
