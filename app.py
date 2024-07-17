@@ -17,7 +17,7 @@ mail = Mail(app)
 def forward_email():
     try:
         data = request.get_json()
-
+        print(data)
         subject = data.get('name')
         message = data.get('message')
         sender_email = data.get('email')
