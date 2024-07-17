@@ -2,6 +2,7 @@ import os
 from flask import Flask, jsonify, request
 from flask_mail import Mail, Message
 from flask_cors import CORS
+from email_validator import validate_email, EmailNotValidError
 
 app = Flask(__name__)
 CORS(app)
