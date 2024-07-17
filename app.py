@@ -19,7 +19,8 @@ def check(email):
 # Validate the email and get normalized form
         v = validate_email(email)
         email = v["email"]
-        print "True")
+        return True
+        
     except EmailNotValidError as e:
 # If the email is not valid, print the error message
         return str(e)
