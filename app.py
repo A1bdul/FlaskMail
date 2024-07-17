@@ -14,19 +14,31 @@ app.config["MAIL_USERNAME"] = os.environ.get("MAIL_USERNAME")
 app.config["MAIL_PASSWORD"] = os.environ.get("MAIL_PASSWORD")
 
 mail = Mail(app)
-
+def check(email):
+    try:
+# Validate the email and get normalized form
+        v = validate_email(email)
+        email = v["email"]
+        print "True")
+    except EmailNotValidError as e:
+# If the email is not valid, print the error message
+        return str(e)
+        
 @app.route('/forward', methods=['POST']) 
 def forward_email():
     try:
         data = request.get_json()
-        print(data)
+       
         subject = data.get('name')
         message = data.get('message')
         sender_email = data.get('email')
 
         if not all([subject, message, sender_email]):
             return jsonify({'error': 'Missing required fields'}), 400
-
+        val_email = check(sender_email)
+        if val_email != True:
+            return jsonify({'error': val_email}), 400
+        
         msg = Message(
             subject,
             sender= os.environ.get("MAIL_USERNAME"),  # Sender is the original sender
